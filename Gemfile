@@ -13,7 +13,7 @@ else
 end
 
 gem 'rest-client', '>= 2.0.0', '< 3', :require => 'rest_client'
-gem 'audited', '~> 4.3'
+gem 'audited', '~> 4.6'
 gem 'will_paginate', '~> 3.0'
 gem 'ancestry', '>= 2.0', '< 4'
 gem 'scoped_search', '>= 4.1.2', '< 5'
@@ -50,7 +50,7 @@ gem 'deacon', '~> 1.0'
 gem 'webpack-rails', '~> 0.9.8'
 gem 'mail', '~> 2.7'
 gem 'sshkey', '~> 1.9'
-gem 'ruby2ruby', '2.3.2'
+gem 'ruby2ruby', '< 2.4.0'
 gem 'dynflow', '>= 0.8.29', '< 1.0.0'
 gem 'daemons'
 gem 'get_process_mem'

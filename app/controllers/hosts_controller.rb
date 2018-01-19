@@ -176,7 +176,7 @@ class HostsController < ApplicationController
 
   def current_parameters
     Taxonomy.as_taxonomy @organization, @location do
-      render :partial => "common_parameters/inherited_parameters", :locals => {:inherited_parameters => refresh_host.host_inherited_params(true), :parameters => refresh_host.host_parameters}
+      render :partial => "common_parameters/inherited_parameters", :locals => {:inherited_parameters => refresh_host.inherited_params_hash, :parameters => refresh_host.host_parameters}
     end
   end
 
@@ -797,7 +797,7 @@ class HostsController < ApplicationController
         !PowerManager::REAL_ACTIONS.include?(action)
       error _('No or invalid power state selected!')
       redirect_to(select_multiple_power_state_hosts_path)
-      return false
+      false
     end
   end
 

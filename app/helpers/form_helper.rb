@@ -93,7 +93,7 @@ module FormHelper
 
   def line_count(f, attr)
     rows = f.object.try(attr).to_s.lines.count rescue 1
-    rows == 0 ? 1 : rows
+    (rows == 0) ? 1 : rows
   end
 
   def radio_button_f(f, attr, options = {})
@@ -203,9 +203,9 @@ module FormHelper
       auto_complete_search(attr,
                            f.object.send(attr).try(:squeeze, " "),
                            options.merge(
-                               :placeholder => _("Filter") + ' ...',
-                               :path        => path,
-                               :name        => "#{f.object_name}[#{attr}]"
+                             :placeholder => _("Filter") + ' ...',
+                             :path        => path,
+                             :name        => "#{f.object_name}[#{attr}]"
                            )
       ).html_safe
     end
@@ -316,14 +316,14 @@ module FormHelper
     end
   end
 
-  def add_label options, f, attr
+  def add_label(options, f, attr)
     return ''.html_safe if options[:label] == :none
 
     label_size = options.delete(:label_size) || "col-md-2"
     required_mark = check_required(options, f, attr)
     label = ''.html_safe + options.delete(:label)
     if label.empty? && f.try(:object) && ((clazz = f.object.class).respond_to?(:gettext_translation_for_attribute_name))
-      label = s_(clazz.gettext_translation_for_attribute_name attr).titleize.html_safe
+      label = s_(clazz.gettext_translation_for_attribute_name(attr)).titleize.html_safe
     end
 
     if options[:label_help].present?
@@ -333,7 +333,7 @@ module FormHelper
     label
   end
 
-  def check_required options, f, attr
+  def check_required(options, f, attr)
     required = options.delete(:required) # we don't want to use html5 required attr so we delete the option
     return ' *'.html_safe if required.nil? ? is_required?(f, attr) : required
   end

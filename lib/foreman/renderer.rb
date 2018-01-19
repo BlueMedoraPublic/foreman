@@ -43,7 +43,7 @@ module Foreman
 
     def host_param(param_name, default = nil)
       check_host
-      @host.params[param_name] || default
+      @host.host_param(param_name) || default
     end
 
     def host_param!(param_name)
@@ -138,7 +138,7 @@ module Foreman
       if Template.where(:name => file, :snippet => true).empty?
         render :partial => "unattended/snippets/#{file}"
       else
-        return snippet(file.gsub(/^_/, ""), options)
+        snippet(file.gsub(/^_/, ""), options)
       end
     end
 
